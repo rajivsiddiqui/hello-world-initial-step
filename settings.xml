@@ -1,5 +1,5 @@
  <server>
-            <id>jenkins_nexus_user</id>
+            <id>nexus</id>
             <username>jenkins</username>
             <password>admin@123</password>
 </server>
