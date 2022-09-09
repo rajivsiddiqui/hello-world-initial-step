@@ -23,8 +23,8 @@
 
   <distributionManagement>
             <repository>
-                    <id>jenkins_nexus_user</id>
-                    <name>Maven_Nexus_Repo</name>
+                    <id>Maven-Hosted</id>
+                    <name>Maven-Hosted</name>
                     <url>http://54.91.22.110:8081/repository/Maven-Hosted/</url>
            </repository>
     <site>
