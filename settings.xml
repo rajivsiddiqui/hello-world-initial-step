@@ -1,5 +1,7 @@
+<servers>
  <server>
-            <id>nexus</id>
+            <id>Maven-Hosted</id>
             <username>jenkins</username>
             <password>admin@123</password>
 </server>
+</servers>
