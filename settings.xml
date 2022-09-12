@@ -1,3 +1,10 @@
+<settings>
+<server>
+      <id>nexus</id>
+      <username>jenkins</username>
+      <password>admin@123</password>
+</server>
+
 <profiles>
         <profile>
           <repositories>
@@ -9,10 +16,6 @@
           </repositories>
         </profile>
 </profiles>
+</settings>
 
 
-<server>
-      <id>nexus</id>
-      <username>jenkins</username>
-      <password>admin@123</password>
-</server>
