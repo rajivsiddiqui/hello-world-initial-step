@@ -22,6 +22,7 @@
   </modules>
 
   <distributionManagement>
+           // Maven
             <repository>
                     <id>nexus</id>
                     <name>Maven-Hosted</name>
