@@ -1,25 +1,5 @@
-<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance""
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">;
-    <servers>
-        <server>
-            <id>Maven-Hosted</id>
-            <username>jenkins</username>
-            <password>admin@123</password>
-        </server>
-    </servers>
-    <profiles>
-        <profile>
-            <id>mule</id>
-            
-            <repositories>
-                <repository>
-                    <id>Maven-Hosted</id>
-                    <name>jenkins</name>
-                    <url>http://54.91.22.110:8081/repository/Maven-Hosted/</url>;
-                    <layout>default</layout>
-         
-                </repository>
-            </repositories>
-        </profile>
-    </profiles>
-</settings>
+<server>
+      <id>nexus</id>
+      <username>jenkins</username>
+      <password>admin@123</password>
+    </server>
