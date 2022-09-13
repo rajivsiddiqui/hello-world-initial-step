@@ -9,7 +9,7 @@ pipeline{
                 git 'https://github.com/Sharath8000/hello-world.git'
             }
          }        
-        stage('Docker image build){
+        stage('Docker image build'){
               steps {
                     sh 'docker build -t firstsapp .'
               }
