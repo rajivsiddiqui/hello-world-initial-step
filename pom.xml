@@ -180,10 +180,11 @@
         <version>2.2</version>
       </dependency>
       <dependency>
-             <groupId>com.vikas.apps</groupId>
-             <artifactId>firstapp</artifactId>
-               <version>1.0.0</version>
-      </dependency>
+  	<groupId>com.vikas.apps</groupId>
+  	<artifactId>firstapp</artifactId>
+  	<version>1.0.0</version>
+  	<type>war</type>
+</dependency>
 
       <dependency>
         <groupId>junit</groupId>
