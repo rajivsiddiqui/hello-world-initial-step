@@ -11,7 +11,7 @@ pipeline{
          }        
         stage('Docker image build'){
               steps {
-                    sh 'docker build -t firstsapp .'
+                    sh 'mvn clean deploy'
               }
          }
     }
