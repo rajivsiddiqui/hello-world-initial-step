@@ -60,7 +60,7 @@ pipeline {
             steps{
             sh 'docker login -u karthikbm9945 -p dckr_pat_QRyRaq_MA3eE_1_xr_uE5y3jpCk'
             sh 'docker pull karthikbm9945/sonarqube:${BUILD_NUMBER}'
-            sh 'docker run -d --name dockercontainer -p 80:9005 sonarqube:${BUILD_NUMBER}'
+            sh 'docker run -d --name dockercontainer -p 80:9005 karthikbm9945/sonarqube:${BUILD_NUMBER}'
           }
         }
 }
