@@ -15,12 +15,6 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   </properties>
 
-  <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>sonar-maven-plugin</artifactId>
-    <version>3.0.2</version>
-  </plugin>
-
   <modules>
     <module>server</module>
     <module>webapp</module>
@@ -59,6 +53,12 @@
               <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
 
+            
+             <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
             <plugin>
               <artifactId>maven-jxr-plugin</artifactId>
             </plugin>
