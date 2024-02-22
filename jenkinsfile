@@ -1,1 +1,71 @@
+pipeline {
+    agent any
+    
+    environment {
+        AWS_ACCESS_KEY_ID = 'AKIAZI2LF5JKUFQJUQ4Y'
+        AWS_SECRET_ACCESS_KEY = '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'
+        AWS_DEFAULT_REGION = 'us-east-2'
+    }
+    
+    stages {
+        stage('checkout') {
+            steps {
+                cleanWs()
+                git branch: 'master', url: 'https://github.com/karthikpdm/hello-world.git'
+            }
+        }
+        
+        stage('SonarQube Analysis') {
+        steps{
+            withSonarQubeEnv('sonar') {
+            sh 'mvn clean install -DskipTests'
+            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=project2 -Dsonar.projectName='project2'"
+   
+               }
+            }
+        }
+        
+        
+    
+        
+        stage(build){
+            when {
+                expression { currentBuild.result != 'ABORTED' }
+            }
+            steps{
+                sh "mvn clean install"
+                sh "cp -R webapp/target/webapp.war ."
+                sh "mv webapp.war webapp.war${BUILD_NUMBER}"
+            }
+        }
+        
+        stage(awsconfigure){
+            steps{
+               sh "aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID"
+               sh "aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
+               sh "aws configure set region $AWS_DEFAULT_REGION" 
+            }
+        }
+        
+        stage(docker){
+            steps{
+            sh 'docker build -t myimage .'
+            sh 'docker tag myimage:latest karthikbm9945/sonarqube:${BUILD_NUMBER}'
+            sh 'docker login -u karthikbm9945 -p dckr_pat_QRyRaq_MA3eE_1_xr_uE5y3jpCk'
+            sh 'docker push karthikbm9945/sonarqube:${BUILD_NUMBER}'
+            sh 'docker tag myimage 637423446613.dkr.ecr.us-east-2.amazonaws.com/karthik:${BUILD_NUMBER}'
+            sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 637423446613.dkr.ecr.us-east-1.amazonaws.com'
+            sh 'docker push 637423446613.dkr.ecr.us-east-2.amazonaws.com/karthik:${BUILD_NUMBER}'
+            }
+        }
+        
+         stage(pushtoECR){    
+           steps{
+            sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 637423446613.dkr.ecr.us-east-2.amazonaws.com'
+            sh 'docker tag myimage:latest 637423446613.dkr.ecr.us-east-2.amazonaws.com/sonar:${BUILD_NUMBER}'
+            sh 'docker push 637423446613.dkr.ecr.us-east-2.amazonaws.com/sonar:${BUILD_NUMBER}'
+            }
+        }  
+    }
 
+}
