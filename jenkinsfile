@@ -53,9 +53,6 @@ pipeline {
             sh 'docker tag myimage:latest karthikbm9945/sonarqube:${BUILD_NUMBER}'
             sh 'docker login -u karthikbm9945 -p dckr_pat_QRyRaq_MA3eE_1_xr_uE5y3jpCk'
             sh 'docker push karthikbm9945/sonarqube:${BUILD_NUMBER}'
-            sh 'docker tag myimage 637423446613.dkr.ecr.us-east-2.amazonaws.com/karthik:${BUILD_NUMBER}'
-            sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 637423446613.dkr.ecr.us-east-1.amazonaws.com'
-            sh 'docker push 637423446613.dkr.ecr.us-east-2.amazonaws.com/karthik:${BUILD_NUMBER}'
             }
         }
         
