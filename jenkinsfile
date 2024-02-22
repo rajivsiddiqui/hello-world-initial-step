@@ -63,6 +63,14 @@ pipeline {
             sh 'docker push 637423446613.dkr.ecr.us-east-2.amazonaws.com/docker:${BUILD_NUMBER}'
             }
         }  
-    }
+
+        stage(dockercontainer){
+            steps{
+            sh 'docker login -u karthikbm9945 -p dckr_pat_QRyRaq_MA3eE_1_xr_uE5y3jpCk'
+            sh 'docker run -d --name dockercontainer -p 80:9005 sonarqube:${BUILD_NUMBER}'
+          }
+        }
+}
+
 
 }
